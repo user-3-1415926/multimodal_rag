@@ -132,9 +132,10 @@ def multi_rag_fct(
     )
 
     # 分数列表
-    score_lines = []
-    for raw, scaled in zip(scores_list, normalized_scores):
-        score_lines.append(f"{raw:.6f} | {scaled:.2f}")
+    score_lines = [
+        f"{raw:.6f} | {scaled:.2f}"
+        for raw, scaled in zip(scores_list, normalized_scores)
+    ]
     scores_str = "\n".join(score_lines)
 
     # Item 综合得分
@@ -146,7 +147,7 @@ def multi_rag_fct(
         for it in item_rankings
     )
 
-    # 3. 简化后的 Prompt
+    # 3. Prompt
     augmented_prompt = f"""
 你是一名检索增强问答助手，只能根据以下内容回答，不得使用外部知识。
 
@@ -169,8 +170,15 @@ def multi_rag_fct(
 请对检索到的每个项目给出：
 - 匹配度 (0–100)
 - 简要理由（只根据上下文）
-
 最后总结哪个 item 最可能匹配，并说明原因。
 """
 
-    return augmented_prompt
+    # ★★ 返回 main_rag 期望的 6 个值 ★★
+    return (
+        text_context,
+        image_paths,
+        scores_list,
+        normalized_scores,
+        item_rankings,
+        augmented_prompt,
+    )
