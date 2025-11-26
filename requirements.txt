@@ -1,0 +1,9 @@
+torch
+transformers
+Pillow
+langchain
+langchain-community
+faiss-cpu
+numpy
+scikit-learn
+sentence-transformers
