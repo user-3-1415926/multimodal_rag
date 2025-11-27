@@ -175,10 +175,10 @@ def multi_rag_fct(
 
     # ★★ 返回 main_rag 期望的 6 个值 ★★
     return (
-        text_context,
-        image_paths,
-        scores_list,
-        normalized_scores,
-        item_rankings,
-        augmented_prompt,
+        text_context
+        ,image_paths
+        ,scores_list
+        ,normalized_scores
+        ,item_rankings
+        ,generate(llmModelName, augmented_prompt).get("response", "")
     )

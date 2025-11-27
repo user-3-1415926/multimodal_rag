@@ -9,10 +9,10 @@ from multi_generation import multi_rag_fct
 from langchain_community.vectorstores import FAISS # 引入 FAISS 类型，用于类型提示
 
 # --- 配置 ---
-DATA_DIR = "./data" # 假设您的数据存储在这个目录下
+DATA_DIR = "./data" 
 VECTOR_DB_PATH = "./faiss_index"
 INDEX_NAME = "multimodal_clip_faiss"
-LLM_MODEL = "deepseek-r1:1.5b" # 替换为您实际的 Ollama 模型
+LLM_MODEL = "deepseek-r1:1.5b" 
 
 # --- 1. 准备数据和索引创建 ---
 def initialize_store(data_dir=DATA_DIR, pthName=VECTOR_DB_PATH, idxName=INDEX_NAME) -> FAISS | None:
@@ -33,7 +33,7 @@ def initialize_store(data_dir=DATA_DIR, pthName=VECTOR_DB_PATH, idxName=INDEX_NA
         return load_multimodal_index(pthName, idxName)
 
 
-# --- 2. RAG 查询执行 (更新版本) ---
+# --- 2. RAG 查询执行  ---
 def run_query(
     vector_store: FAISS,
     llmModelName: str = LLM_MODEL,
@@ -126,7 +126,7 @@ if __name__ == "__main__":
         # --- 示例 2: 图像查询 ---
         # 假设用户上传了他丢失物品（如钥匙扣）的照片
         # 注意：您需要确保 'data/test_image.jpg' 文件实际存在于您的文件系统中以进行测试
-        image_query_path = "data/lost_keychain.jpg"
+        image_query_path = "data/lost_keychain.png"
         if os.path.exists(image_query_path):
              run_query(vector_store, query_image_path=image_query_path)
         else:
